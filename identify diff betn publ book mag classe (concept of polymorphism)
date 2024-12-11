@@ -1,0 +1,60 @@
+static class Publication{
+        int copies;
+        String title;
+        double price;
+        Publication(int copies,double price,String title){
+        this.title=title;
+        this.copies=copies;
+        this.price=price;
+        }
+        void saleCopy(){
+            System.out.println("The total sale of "+title+" is "+(copies*price)+"rs");
+        }
+    }
+    static class Books extends Publication{
+       String Author;
+       Books(int copies,double price,String title,String Author ){
+           super(copies,price,title);
+           this.Author=Author;
+       }
+       void OrderCopies(int copy){
+           copies+=copy;
+       }
+        void saleCopy(){
+            System.out.println("The total sale of book "+title+" by Author "+Author+" is "+(copies*price)+"rs");
+        }
+    }
+    static class Magazine extends Publication{
+       String issue;
+       Magazine(int copies,double price,String title,String issue){
+           super(copies,price,title);
+           this.issue=issue;
+
+       }
+       void OrderMagazine(int copyy){
+           copies+=copyy;
+       }
+       void issuedMonth(String isssue){
+           issue=isssue;
+           System.out.println("The new issue month "+ issue);
+       }
+       void saleCopy(){
+           System.out.println("The total sale of magazine "+title+"issued on"+issue);
+       }
+    }
+    public static void main(String[] args) {
+
+        Books book1 = new Books(100, 250.0, "Java Programming", "John Doe");
+        book1.saleCopy(); // Calls the overridden saleCopy() method in Books
+        book1.OrderCopies(50); // Ordering additional 50 copies
+        book1.saleCopy(); // Calls the overridden saleCopy() method again
+
+        // Creating an object of Magazine
+        Magazine magazine1 = new Magazine(200, 50.0, "Tech Today", "January 2024");
+        magazine1.saleCopy(); // Calls the overridden saleCopy() method in Magazine
+        magazine1.OrderMagazine(100); // Ordering additional 100 magazines
+        magazine1.issuedMonth("February 2024"); // Updating the issue month
+        magazine1.saleCopy(); // Calls the overridden saleCopy() method again
+
+
+    }

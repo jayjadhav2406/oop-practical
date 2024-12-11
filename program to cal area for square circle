@@ -1,0 +1,71 @@
+import java.util.*;
+abstract class shape
+{
+    double val1;
+    Scanner S1=new Scanner(System.in);
+    
+    void input()
+    {
+        System.out.println("\nEnter the dimension:");
+         val1=S1.nextDouble();
+         
+    }
+    
+   abstract void compute_area();
+}
+
+class Square extends shape
+{
+    void compute_area()
+    {
+        double area;
+        area=val1*val1;
+        
+         System.out.println("\nArea of square is "+area);
+        
+    }
+}
+
+class Circle extends shape
+{
+    void compute_area()
+    {
+        double area;
+        area=3.14*val1*val1;
+        
+         System.out.println("\nArea of circle is "+area);
+       
+    }
+}
+public class Assignment4a{
+    public static void main(String[] args)
+    {   
+        Scanner sc= new Scanner(System.in);
+
+        int x;
+       
+        do{ 
+            System.out.println("\nEnter your choice :\n1. Square \n2. Circle1 \n3. Exit\n");
+            x=sc.nextInt();
+    
+            switch (x) {
+                case 1:
+                    shape A= new Square();
+                    A.input();
+                    A.compute_area();
+                    break;
+             
+		  case 2:
+                     shape B= new Circle();
+                     B.input();
+                     B.compute_area();
+                    break; 
+                case 3:
+                    break;        
+                default:
+                    System.out.println("\nInvalid Choice.");
+            }
+        }while(x!=3);
+  
+    }
+}

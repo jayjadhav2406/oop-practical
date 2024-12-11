@@ -1,0 +1,73 @@
+public static <T> int countElements(ArrayList<T> collection, PropertyChecker<T> checker) {
+        int count = 0;
+        for (T element : collection) {
+            if (checker.check(element)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // Interface for checking properties of elements
+    interface PropertyChecker<T> {
+        boolean check(T element);
+    }
+
+    public static void main(String[] args) {
+        // Create a collection of Integer elements
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
+        numbers.add(6);
+        numbers.add(7);
+        numbers.add(8);
+        numbers.add(9);
+        numbers.add(10);
+
+        // Count even numbers
+        int evenCount = countElements(numbers, number -> (Integer) number % 2 == 0);
+        System.out.println("Even numbers count: " + evenCount);
+
+        // Count odd numbers
+        int oddCount = countElements(numbers, number -> (Integer) number % 2 != 0);
+        System.out.println("Odd numbers count: " + oddCount);
+
+        // Count prime numbers
+        int primeCount = countElements(numbers, number -> isPrime((Integer) number));
+        System.out.println("Prime numbers count: " + primeCount);
+
+        // Create a collection of String elements (for palindromes)
+        ArrayList<String> words = new ArrayList<>();
+        words.add("madam");
+        words.add("hello");
+        words.add("racecar");
+        words.add("world");
+        words.add("level");
+
+        // Count palindromes
+        int palindromeCount = countElements(words, word -> isPalindrome((String) word));
+        System.out.println("Palindrome words count: " + palindromeCount);
+    }
+
+    // Helper method to check if a number is prime
+    private static boolean isPrime(int number) {
+        if (number <= 1) return false;
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) return false;
+        }
+        return true;
+    }
+
+    // Helper method to check if a word is a palindrome
+    private static boolean isPalindrome(String word) {
+        int length = word.length();
+        for (int i = 0; i < length / 2; i++) {
+            if (word.charAt(i) != word.charAt(length - i - 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
